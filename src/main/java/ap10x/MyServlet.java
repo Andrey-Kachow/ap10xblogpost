@@ -1,5 +1,6 @@
 package ap10x;
 
+import ap10x.view.Includes;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,9 +19,6 @@ public class MyServlet extends HttpServlet {
     resp.setContentType("text/html");
     resp.setStatus(HttpServletResponse.SC_OK);
     PrintWriter pw = resp.getWriter();
-    pw.println("<html><body>");
-    pw.println("Welcome to servlet");
-    pw.println("</body></html>");
+    Includes.include("base.html", pw);
   }
-
 }
