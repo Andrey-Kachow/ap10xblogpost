@@ -1,7 +1,6 @@
 package ap10x.view;
 
 import utils.Pipe;
-import utils.Res;
 
 import java.io.PrintWriter;
 
