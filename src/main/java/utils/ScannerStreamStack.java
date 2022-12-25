@@ -22,15 +22,16 @@ public class ScannerStreamStack implements Closeable {
   }
 
   private boolean pop() {
-    try (Scanner scannerToClose = scanners.pop()) {
+    try (Scanner ignored = scanners.pop()) {
       InputStream streamToClose = streams.pop();
       streamToClose.close();
     } catch (IOException e) {
       return false;
     }
+    return true;
   }
 
-  public boolean moveToNext() throws IOException {
+  public void moveToNext() throws IOException {
     if (!pop()) {
       throw new IOException("Cannot move to next Scanner");
     }

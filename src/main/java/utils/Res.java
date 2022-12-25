@@ -1,14 +1,21 @@
 package utils;
 
+import java.io.File;
 import java.io.InputStream;
 
 public class Res {
 
-  public static InputStream open(String resourcePath) {
-    return Res.class.getClassLoader().getResourceAsStream(resourcePath);
+  public static String get(String resourcePath) {
+    try {
+      return new File(
+        String.valueOf(Res.class.getClassLoader().getResource(resourcePath))
+      ).getName();
+    } catch (NullPointerException npe) {
+      return "#";
+    }
   }
 
-  public static InputStream openTemplate(String templatePath) {
-    return open("templates/" + templatePath);
+  public static InputStream open(String resourcePath) {
+    return Res.class.getClassLoader().getResourceAsStream(resourcePath);
   }
 }

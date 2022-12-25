@@ -1,6 +1,5 @@
 package utils;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -8,9 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Pipe {
-  public static void fromTemplateToWriter(String templateName, PrintWriter out) {
+  public static void fromFileToWriter(String fileName, PrintWriter out) {
     try (
-      InputStream inputStream = Res.openTemplate(templateName);
+      InputStream inputStream = Res.open(fileName);
       Scanner sc = new Scanner(inputStream, StandardCharsets.UTF_8)
     ) {
       while (sc.hasNextLine()) {
@@ -19,7 +18,7 @@ public class Pipe {
       }
       // note that Scanner suppresses exceptions
       if (sc.ioException() != null) {
-        System.out.println(templateName + " sc.ioException()");
+        System.out.println(fileName + " sc.ioException()");
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
