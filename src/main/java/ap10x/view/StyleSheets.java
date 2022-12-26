@@ -1,6 +1,6 @@
 package ap10x.view;
 
-import utils.Pipe;
+import ap10x.utils.Pipe;
 
 import java.io.PrintWriter;
 

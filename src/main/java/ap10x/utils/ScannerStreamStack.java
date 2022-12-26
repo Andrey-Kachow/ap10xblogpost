@@ -1,4 +1,4 @@
-package utils;
+package ap10x.utils;
 
 import java.io.Closeable;
 import java.io.IOException;
