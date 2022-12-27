@@ -7,8 +7,6 @@ public class TestPage implements RenderComponent {
   public void render(PrintWriter out) {
     BasePage.with(
       "Test",
-      StyleSheets.asFollows("style.css"),
-      Scripts.asFollows("base.js"),
       new RawHtml("<h1>This is Sample Page</h1>")
     ).render(out);
   }

@@ -1,6 +1,6 @@
-package ap10x;
+package servlets;
 
-import ap10x.view.TestPage;
+import ap10x.view.index.IndexPage;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class MyServlet extends HttpServlet {
+public class IndexServlet extends HttpServlet {
   @Override
   protected void doGet(
           HttpServletRequest req,
@@ -17,6 +17,6 @@ public class MyServlet extends HttpServlet {
     resp.setContentType("text/html");
     resp.setStatus(HttpServletResponse.SC_OK);
     PrintWriter pw = resp.getWriter();
-    new TestPage().render(pw);
+    new IndexPage().render(pw);
   }
 }
