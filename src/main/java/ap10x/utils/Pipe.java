@@ -9,26 +9,27 @@ import java.util.Scanner;
 public class Pipe {
 
   private final InputStream in;
+  private final Scanner scanner;
   private final PrintWriter out;
 
   public Pipe(String fileName, PrintWriter out) {
     this.in = Res.open(fileName);
+    this.scanner = new Scanner(this.in, StandardCharsets.UTF_8);
     this.out = out;
   }
 
   private void writeUntil(boolean untilTheEnd) {
-    try (
-      Scanner sc = new Scanner(in, StandardCharsets.UTF_8)
-    ) {
-      while (sc.hasNextLine()) {
-        String line = sc.nextLine();
+    while (scanner.hasNextLine()) {
+      String line = scanner.nextLine();
 
-        if (untilTheEnd && line.trim().equals("{% PLACEHOLDER %}")) {
-          return;
-        }
-
-        out.println(line);
+      if (untilTheEnd && line.trim().equals("{% PLACEHOLDER %}")) {
+        return;
       }
+
+      out.println(line);
+    }
+    scanner.close();
+    try {
       in.close();
     } catch (IOException e) {
       throw new RuntimeException(e);
