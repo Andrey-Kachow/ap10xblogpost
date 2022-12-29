@@ -1,21 +1,21 @@
 package ap10x.utils;
 
-import java.io.File;
+import ap10x.Settings;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class Res {
 
-  public static String get(String resourcePath) {
-    try {
-      return new File(
-        String.valueOf(Res.class.getClassLoader().getResource(resourcePath))
-      ).getName();
-    } catch (NullPointerException npe) {
-      return "#";
-    }
-  }
-
   public static InputStream open(String resourcePath) {
-    return Res.class.getClassLoader().getResourceAsStream(resourcePath);
+    if (!Settings.DEBUG) {
+      return Res.class.getClassLoader().getResourceAsStream(resourcePath);
+    }
+    try {
+      return new FileInputStream(System.getenv("AP10X_RES_PATH") + resourcePath);
+    } catch (FileNotFoundException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

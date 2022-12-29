@@ -1,3 +1,11 @@
+#!/bin/bash
+
+dir=$(pwd)
+
+export AP10X_RES_PATH=$dir"/src/main/resources/"
+
+echo $AP10X_RES_PATH
+
 mvn clean
 #mvn compile
 #mvn dependency:copy-dependencies
