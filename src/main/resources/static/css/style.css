@@ -1,3 +1,16 @@
+body {
+    font-size: 1.2em;
+}
+
 #content {
-    background: #00FF00;
+    background: #0fc389;
+}
+
+.motivation-dark {
+    background: #040404;
+    color: #fcfcfc;
+}
+
+.main-h1-wrapper {
+    padding: 0.1rem;
 }
