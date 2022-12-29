@@ -9,7 +9,7 @@ public class IndexPage implements RenderComponent {
   public void render(PrintWriter out) {
     BasePage.with(
       "Test",
-      new StyleSheets(),
+      new StyleSheets("index.css"),
       new Scripts(),
       new Include("index.html")
     ).render(out);

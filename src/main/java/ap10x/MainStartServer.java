@@ -2,6 +2,7 @@ package ap10x;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
+import servlets.FileServlet;
 import servlets.IndexServlet;
 
 public class MainStartServer {
@@ -11,6 +12,7 @@ public class MainStartServer {
     var handler = new ServletHandler();
     server.setHandler(handler);
     handler.addServletWithMapping(IndexServlet.class, "/");
+    handler.addServletWithMapping(FileServlet.class, "/file/*");
     server.start();
     server.join();
   }

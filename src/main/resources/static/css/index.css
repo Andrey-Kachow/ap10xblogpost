@@ -1,0 +1,10 @@
+#main-image-wrapper {
+    width: 100%;
+}
+
+#index-personal-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    border-radius: 100%;
+}

@@ -5,6 +5,7 @@ html {
 body {
     font-family: 'Alegreya Sans SC', Helvetica;
     font-size: 1.2rem;
+    margin: 0;
 }
 
 .pseudo-h1 {
