@@ -2,15 +2,36 @@ html {
     font-size: 12pt;
 }
 
+a:link {
+  color: #cc1111;
+}
+a:visited {
+  color: #aa1111;
+}
+a:hover {
+  color: #ff1111;
+}
+a:active {
+  color: #ffffff;
+  
+}
+
 body {
+    background: #f0f0f0;
     font-family: 'Alegreya Sans SC', Helvetica;
     font-size: 1.2rem;
     margin: 0;
+}   
+
+h1, h2, h3, h4, h5 {
+    background: #040404;
+    color: #fcfcfc;
+    padding: 0.2em;
 }
 
 .pseudo-h1 {
     display: block;
-    font-size: 4rem;
+    font-size: 2rem;
     margin-block-start: 0;
     margin-block-end: 0;
     margin-inline-start: 0px;
@@ -19,13 +40,26 @@ body {
 }
 
 #content {
-    background: #0fc389;
+    background: #fff;
 }
 
 .motivation-dark {
     font-family: 'Allerta Stencil';
     background: #040404;
     color: #fcfcfc;
+}
+
+.dark-line-break {
+    background: #040404;
+    height: 1rem;
+}
+
+.mid-grey {
+    background: #dddddd;
+}
+
+.silver {
+    background: #f0f0f0;
 }
 
 .main-h1-wrapper {

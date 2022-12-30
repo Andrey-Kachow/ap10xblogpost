@@ -2,9 +2,33 @@
     width: 100%;
 }
 
+#main-image-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
 #index-personal-image {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    border-radius: 100%;
+/*    width: 100%;*/
+}
+
+.index-top-image {
+    min-width: 33.33%;
+}
+
+.index-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.index-nav-item {
+    display: inline-block;
+    margin: 0.3rem;
+    padding: 0.6rem;
+    background: #fffff;
+    font-size: 1rem;
+    box-shadow: 0 0 0.8rem #888888;
 }
