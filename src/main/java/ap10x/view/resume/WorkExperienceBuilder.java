@@ -33,8 +33,18 @@ public class WorkExperienceBuilder {
     return this;
   }
 
+  public WorkExperienceBuilder workedSince(String s) {
+    this.startDate = Date.fromString(s);
+    return this;
+  }
+
   public WorkExperienceBuilder workedUntil(int day, Month month, int year) {
     this.endDate = new Date(day, month.getValue(), year);
+    return this;
+  }
+
+  public WorkExperienceBuilder workedUntil(String s) {
+    this.endDate = Date.fromString(s);
     return this;
   }
 

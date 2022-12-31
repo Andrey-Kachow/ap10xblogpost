@@ -14,6 +14,6 @@ public class Include implements RenderComponent {
 
   @Override
   public void render(PrintWriter out) {
-    Pipe.fromFileToWriter("templates/" + templatePath, out);
+    Pipe.writeFromFileToWriter("templates/" + templatePath, out);
   }
 }

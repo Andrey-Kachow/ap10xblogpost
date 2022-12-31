@@ -13,12 +13,25 @@ public record Date(int day, int month, int year) {
   @Override
   public String toString() {
     if (isPresent()) {
-      return "Now";
+      return "Present";
     }
     return day + "/" + month + "/" + year;
   }
 
   public static Date present() {
     return new Date(NULL_DAY, NULL_MONTH, NULL_YEAR);
+  }
+
+  public static Date fromString(String s) {
+    s = s.strip();
+    if (s.equals("Present")) {
+      return Date.present();
+    }
+    String[] tokens = s.split("/");
+    return new Date(
+      Integer.parseInt(tokens[0]),
+      Integer.parseInt(tokens[1]),
+      Integer.parseInt(tokens[2])
+    );
   }
 }

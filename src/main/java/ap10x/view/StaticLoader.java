@@ -27,7 +27,7 @@ public abstract class StaticLoader implements RenderComponent {
   public void render(PrintWriter out) {
     out.println("<" + tagName + ">");
     for (String script : staticFiles) {
-      Pipe.fromFileToWriter(staticRoot + script, out);
+      Pipe.writeFromFileToWriter(staticRoot + script, out);
     }
     out.println("</" + tagName + ">");
   }

@@ -10,24 +10,30 @@ public class Pipe {
 
   private final InputStream in;
   private final Scanner scanner;
-  private final PrintWriter out;
+  private final PipeAdapter out;
+  private boolean scannerIsClosed = false;
 
-  public Pipe(String fileName, PrintWriter out) {
+  private Pipe(String fileName, PipeAdapter out) {
     this.in = Res.open(fileName);
     this.scanner = new Scanner(this.in, StandardCharsets.UTF_8);
     this.out = out;
   }
 
-  private void writeUntil(boolean untilTheEnd) {
+  public Pipe(String fileName, PrintWriter pw) {
+    this(fileName, new PrintPipeAdapter(pw));
+  }
+
+  private void writeUntil(boolean untilTheEnd, String placeholder) {
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine();
 
-      if (untilTheEnd && line.trim().equals("{% PLACEHOLDER %}")) {
+      if (untilTheEnd && line.trim().equals(placeholder)) {
         return;
       }
 
       out.println(line);
     }
+    scannerIsClosed = true;
     scanner.close();
     try {
       in.close();
@@ -37,14 +43,30 @@ public class Pipe {
   }
 
   public void writeUntilPlaceHolder() {
-    writeUntil(true);
+    writeUntil(true, "{% PLACEHOLDER %}");
+  }
+
+  public void writeUntilPlaceHolder(String placeholder) {
+    writeUntil(true, placeholder);
   }
 
   public void writeUntilTheEnd() {
-    writeUntil(false);
+    writeUntil(false, null);
   }
 
-  public static void fromFileToWriter(String fileName, PrintWriter out) {
-    new Pipe(fileName, out).writeUntilTheEnd();
+  public String retreiveWritten() {
+    return out.retrieve();
+  }
+
+  public boolean isClosed() {
+    return scannerIsClosed;
+  }
+
+  public static void writeFromFileToWriter(String fileName, PrintWriter out) {
+    new Pipe(fileName, new PrintPipeAdapter(out)).writeUntilTheEnd();
+  }
+
+  public static Pipe fromPipeToString(String fileName) {
+    return new Pipe(fileName, new StringSaverPipeAdapter());
   }
 }
