@@ -1,4 +1,4 @@
-package servlets;
+package ap10x.servlets;
 
 import ap10x.Settings;
 import jakarta.servlet.http.HttpServlet;

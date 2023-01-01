@@ -1,4 +1,4 @@
-package servlets;
+package ap10x.servlets;
 
 import ap10x.view.index.IndexPage;
 import jakarta.servlet.http.HttpServlet;

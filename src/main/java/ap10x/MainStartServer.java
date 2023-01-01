@@ -2,9 +2,9 @@ package ap10x;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
-import servlets.FileServlet;
-import servlets.IndexServlet;
-import servlets.ResumeServlet;
+import ap10x.servlets.FileServlet;
+import ap10x.servlets.IndexServlet;
+import ap10x.servlets.ResumeServlet;
 
 public class MainStartServer {
 
