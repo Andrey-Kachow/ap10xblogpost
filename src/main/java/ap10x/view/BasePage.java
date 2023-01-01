@@ -1,6 +1,7 @@
 package ap10x.view;
 
 import ap10x.utils.Pipe;
+import ap10x.view.shared.PlaceHolder;
 
 import java.io.PrintWriter;
 
@@ -41,8 +42,7 @@ public class BasePage implements RenderComponent {
 
     // Handling wrapper
     Pipe wrapperPipe = new Pipe("templates/wrapper.html", out);
-    wrapperPipe.writeUntilPlaceHolder();
-    content.render(out);
+    PlaceHolder.writeAndRender(wrapperPipe, out, content);
     wrapperPipe.writeUntilTheEnd();
 
     out.println("</body>");

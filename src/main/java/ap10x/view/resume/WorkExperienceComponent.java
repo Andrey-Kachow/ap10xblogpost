@@ -3,6 +3,7 @@ package ap10x.view.resume;
 import ap10x.models.Date;
 import ap10x.utils.Pipe;
 import ap10x.view.RenderComponent;
+import ap10x.view.shared.PlaceHolder;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -35,27 +36,23 @@ public class WorkExperienceComponent implements RenderComponent {
     this.thoughts = thoughts;
   }
 
+  private String keyPointsString() {
+    StringBuilder sb = new StringBuilder();
+    for (String keyPoint : keyPoints) {
+      sb.append("<li class=\"wexp-key-point-li\">").append(keyPoint).append("</li>\n");
+    }
+    return sb.toString();
+  }
+
   @Override
   public void render(PrintWriter out) {
-    Pipe workExperiencePipe = new Pipe("templates/resume/work_experience.html", out);
-    workExperiencePipe.writeUntilPlaceHolder();
-    out.println(roleTitle);
-    workExperiencePipe.writeUntilPlaceHolder();
-    out.println(company);
-    workExperiencePipe.writeUntilPlaceHolder();
-    out.println(startDate);
-    out.println(" - ");
-    out.println(endDate);
-    workExperiencePipe.writeUntilPlaceHolder();
-
-    for (String keyPoint : keyPoints) {
-      out.println("<li class=\"wexp-key-point-li\">" + keyPoint + "</li>");
-    }
-
-    workExperiencePipe.writeUntilPlaceHolder();
-    out.println(description);
-    workExperiencePipe.writeUntilPlaceHolder();
-    out.println(thoughts);
-    workExperiencePipe.writeUntilTheEnd();
+    Pipe pipe = new Pipe("templates/resume/work_experience.html", out);
+    PlaceHolder.writeMany(pipe, out,
+      roleTitle, company,
+      startDate + " - " + endDate,
+      keyPointsString(), description,
+      thoughts
+    );
+    pipe.writeUntilTheEnd();
   }
 }
