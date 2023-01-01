@@ -28,26 +28,11 @@ public class BasePage implements RenderComponent {
 
   @Override
   public void render(PrintWriter out) {
-    out.print("""
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>""");
-    out.print(title);
-    out.print("</title>\n");
-    stylesheets.render(out);
-    out.print("</head>\n<body>\n");
-
-    // Handling wrapper
     Pipe wrapperPipe = new Pipe("templates/wrapper.html", out);
-    PlaceHolder.writeAndRender(wrapperPipe, out, content);
+    PlaceHolder.writeMany(wrapperPipe, out,
+      title, stylesheets, content, scripts
+    );
     wrapperPipe.writeUntilTheEnd();
-
-    out.println("</body>");
-    scripts.render(out);
-    out.println("</html>\n");
   }
 
   public static BasePage with(
@@ -57,12 +42,5 @@ public class BasePage implements RenderComponent {
     RenderComponent content
   ) {
     return new BasePage(title, stylesheets, scripts, content);
-  }
-
-  public static BasePage with(
-    String title,
-    RenderComponent content
-  ) {
-    return new BasePage(title, new StyleSheets(), new Scripts(), content);
   }
 }

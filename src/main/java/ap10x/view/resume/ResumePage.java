@@ -8,7 +8,7 @@ public class ResumePage implements RenderComponent {
   @Override
   public void render(PrintWriter out) {
     BasePage.with(
-      "Test",
+      "Resume",
       new StyleSheets("index.css"),
       new Scripts(),
       new CollectionComponent<>(WorkExperienceProvider.fromTextData())
