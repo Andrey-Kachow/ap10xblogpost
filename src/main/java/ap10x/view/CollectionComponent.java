@@ -1,6 +1,7 @@
 package ap10x.view;
 
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
 
 public class CollectionComponent<T extends RenderComponent> implements RenderComponent {
@@ -9,6 +10,10 @@ public class CollectionComponent<T extends RenderComponent> implements RenderCom
 
   public CollectionComponent(List<T> components) {
     this.components = components;
+  }
+
+  public static CollectionComponent<RenderComponent> of(RenderComponent... components) {
+    return new CollectionComponent<>(Arrays.asList(components));
   }
 
   @Override
